@@ -35,6 +35,8 @@ public class HospitalRepoImpl implements HospitalRepo {
 
     @Override
     public void deleteById(Long id) {
+        Hospital hospital = entityManager.find(Hospital.class, id);
+        entityManager.remove(hospital);
 
     }
 }

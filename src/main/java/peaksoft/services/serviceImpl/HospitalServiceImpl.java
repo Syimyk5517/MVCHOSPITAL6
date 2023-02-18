@@ -46,6 +46,7 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public void deleteById(Long id) {
+        hospitalRepo.deleteById(id);
 
     }
 }
