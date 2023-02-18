@@ -28,16 +28,18 @@ public class Hospital {
 
 
 
-    @OneToMany(cascade = {ALL}, fetch = LAZY)
+    @OneToMany(mappedBy = "hospital",cascade = {ALL}, fetch = LAZY)
     private List<Doctor> doctors = new ArrayList<>();
 
     @OneToMany(mappedBy = "hospital", fetch = LAZY)
     private List<Patient> patients = new ArrayList<>();
 
-    @OneToMany(cascade = {ALL}, fetch = LAZY)
-    private List<Department> departments = new ArrayList<>();
+    @OneToMany(mappedBy = "hospital",cascade = {ALL}, fetch = LAZY)
+    private List<Department> departments ;
+    public void addDepartment(Department department){
+        departments.add(department);
+    }
 
-
     @OneToMany(cascade = {ALL}, fetch = LAZY)
-    private List<Appointment> appointments = new ArrayList<>();
+    private List<Appointment> appointments ;
 }

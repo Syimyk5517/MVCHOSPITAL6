@@ -14,12 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HospitalController {
     private final HospitalService hospitalService;
-
+    
     @GetMapping
     String getAll(Model model){
         List<Hospital> hospitals = hospitalService.getAll();
         model.addAttribute("hospitals",hospitals);
-        return "hospitals";
+        return "hospital/hospitals";
     }
     @PostMapping("/new")
     String create(@ModelAttribute("newHospital")Hospital hospital){
@@ -29,7 +29,7 @@ public class HospitalController {
     @GetMapping("/savePage")
     String save(Model model){
         model.addAttribute("hospital",new Hospital());
-        return "savePage";
+        return "hospital/savePage";
     }
     @DeleteMapping("{id}/delete")
     String deleteById(@PathVariable("id")Long id){

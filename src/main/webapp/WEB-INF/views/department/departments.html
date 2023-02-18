@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Car Page2</title>
+</head>
+<body>
+<div class="wrapper-btn">
+    <a th:href="@{/url}">
+        <button class="btn btn-primary" type="button">back</button>
+    </a>
+    <a th:href="@{/departments/saveDepartment}">
+        <button class="btn btn-primary" type="button">Create</button>
+    </a>
+</div>
+<div class="container mt-3">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Department Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department : ${departments}">
+            <td th:text="${department.getId()}"></td>
+            <td th:text="${department.getName()}"></td>
+            <th1>  Syimyk   </th1>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

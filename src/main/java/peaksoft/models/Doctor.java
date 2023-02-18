@@ -33,7 +33,8 @@ public class Doctor {
 
     @ManyToMany(mappedBy = "doctors",fetch = LAZY)
     private List<Department> departments = new ArrayList<>();
-
+    @ManyToOne
+    private Hospital hospital;
     @OneToMany(mappedBy = "doctor", fetch = LAZY, cascade = CascadeType.ALL)
     private List<Appointment> appointments = new ArrayList<>();
 }

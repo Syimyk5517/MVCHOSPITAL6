@@ -24,7 +24,7 @@
       <form th:method="DELETE" th:action="@{/hospitals/{id}/delete(id=${hospital.getId()})}">
         <input type="submit" class="btn btn-outline-primary"  th:value="  Delete  "/>
       </form>
-      <form th:method="UPDATE" th:action="@{/hospitals.html/update(id${hospital.id})}">
+      <form th:method="UPDATE" th:action="@{/WEB-INF/views/hospital/hospitals.html/update(id${hospital.id})}">
         <input type="submit" class="btn btn-outline-primary"  th:value="  Update  "/>
       </form>
     </div>

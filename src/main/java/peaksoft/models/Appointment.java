@@ -31,6 +31,6 @@ public class Appointment {
     @ManyToOne(fetch = EAGER)
     private Doctor doctor;
 
-    @OneToOne(fetch = EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = EAGER, cascade = CascadeType.ALL)
     private Department department;
 }
