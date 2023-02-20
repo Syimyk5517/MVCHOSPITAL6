@@ -14,4 +14,5 @@ public interface DoctorService {
     void findById(Long id);
     Doctor update(Doctor doctor);
     void delete(Long id);
+
 }

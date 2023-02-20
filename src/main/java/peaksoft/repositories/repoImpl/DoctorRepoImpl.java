@@ -20,7 +20,7 @@ public class DoctorRepoImpl implements DoctorRepo {
     private EntityManager entityManager;
     @Override
     public List<Doctor> getAll(Long id) {
-        return entityManager.createQuery("select d from Doctor d where d.hospital.id = id", Doctor.class).setParameter("id",id).getResultList();
+        return entityManager.createQuery("select d from Doctor d where d.hospital.id =:id", Doctor.class).setParameter("id",id).getResultList();
     }
 
     @Override

@@ -22,7 +22,7 @@ public class HospitalController {
         return "hospital/hospitals";
     }
     @PostMapping("/new")
-    String create(@ModelAttribute("newHospital")Hospital hospital){
+    String create(@ModelAttribute("hospital")Hospital hospital){
         hospitalService.save(hospital);
         return "redirect:/hospitals";
     }

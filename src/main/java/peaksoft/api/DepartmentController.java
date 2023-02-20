@@ -24,17 +24,16 @@ public class DepartmentController {
           model.addAttribute("hospitalId",id);
           return "department/departments";
     }
-    @PostMapping("/new")
-    String create(@ModelAttribute("department")Department department,
-                  @PathVariable("id") Long id) throws Exception {
-         departmentService.save(id,department);
-         return "redirect:/{id}/departments";
-    }
     @GetMapping("/saveDepartment")
     String save(Model model,@PathVariable("id")Long id){
         model.addAttribute("department",new Department());
         model.addAttribute("hospitalId",id);
         return "/department/saveDepartment";
+    }
+    @PostMapping("/new")
+    String create(@ModelAttribute("department")Department department, @PathVariable("id") Long id) throws Exception {
+         departmentService.save(id,department);
+         return "redirect:/{id}/departments";
     }
 
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Save Departments</title>
+    <title>Save Doctor</title>
 </head>
 <body>
 <div class="wrapper-btn">
@@ -15,11 +15,17 @@
 </div>
 
 <div class="d-flex justify-content-center">
-    <form class="p-5 bg-light" th:action="@{/{id}/departments/new (id=${hospitalId})}" th:object="${department}" method="post">
+    <form class="p-5 bg-light" th:action="@{/{id}/doctors/new (id=${hospitalId})}" th:object="${doctor}" method="post">
         <input type="hidden" th:field="*{id}">
         <div class="form-group">
-            <label for="nameInput" class="form-label">Name</label>
-            <input type="text" th:field="*{name}" id="nameInput" class="form-control form-control-lg">
+            <label for="nameInput" class="form-label">First Name</label>
+            <input type="text" th:field="*{firsName}" id="firstNameInput" class="form-control form-control-lg">
+            <label for="nameInput" class="form-label">Last Name</label>
+            <input type="text" th:field="*{lastName}" id="lastNameInput" class="form-control form-control-lg">
+            <label for="nameInput" class="form-label">Position</label>
+            <input type="text" th:field="*{position}" id="positionInput" class="form-control form-control-lg">
+            <label for="nameInput" class="form-label">Email</label>
+            <input type="text" th:field="*{email}" id="nameInput" class="form-control form-control-lg">
         </div>
         <!--        <div class="form-group">-->
         <!--            <label for="nameInput">Hospital</label>-->
