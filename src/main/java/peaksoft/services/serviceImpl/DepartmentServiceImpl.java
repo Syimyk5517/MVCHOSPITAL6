@@ -17,8 +17,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-
-public class DepartmentServiceImpl extends Exception implements DepartmentService {
+public class DepartmentServiceImpl implements DepartmentService {
     private final DepartmentRepo departmentRepo;
     private final HospitalRepo hospitalRepo;
     @Override
@@ -29,16 +28,21 @@ public class DepartmentServiceImpl extends Exception implements DepartmentServic
     @Override
     @Transactional
     public void save(Long id ,Department department) throws Exception {
+        System.out.println("Hello");
         Hospital hospital = hospitalRepo.findById(id);
-        for (Department dep : departmentRepo.getAll()) {
-            if (!department.getName().equals(dep.getName())){
+        for (Department dep:departmentRepo.getAll()) {
+            if (!dep.getName().equalsIgnoreCase(department.getName())){
                 hospital.addDepartment(department);
-                department.setHospital(hospital);
-                departmentRepo.save(department);
+               department.setHospital(hospital);
+               departmentRepo.save(department);
+               System.out.println("heloooooooo");
+
             }else {
-                throw new BadRequestExseption();
+                throw new BadRequestExseption("");
             }
+
         }
+            }
 
 
 //        System.out.println("id = " + id);
@@ -52,11 +56,11 @@ public class DepartmentServiceImpl extends Exception implements DepartmentServic
 //                     hospital.addDepartment(department);
 //                     department.setHospital(hospital);
 //                     departmentRepo.save(department);
-//
-//                    System.out.println("department = " + department);
-//                }
-//            }
-    }
+////
+////                    System.out.println("department = " + department);
+////                }
+////            }
+//    }
     @Override
     public void finById(Long id) {
     departmentRepo.finById(id);

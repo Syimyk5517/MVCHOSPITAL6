@@ -37,6 +37,9 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital",cascade = {ALL}, fetch = LAZY)
     private List<Department> departments ;
     public void addDepartment(Department department){
+        if (departments == null){
+            departments = new ArrayList<>();
+        }
         departments.add(department);
     }
 

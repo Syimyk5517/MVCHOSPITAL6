@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Show Car Page2</title>
+    <title>Departments</title>
 </head>
 <body>
 <div class="wrapper-btn">
@@ -18,17 +18,24 @@
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>Id</th>
-            <th>Department Name</th>
+            <th>Name</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="department : ${departments}">
-            <td th:text="${department.getId()}"></td>
-            <td th:text="${department.getName()}"></td>
-            <th1>  Syimyk   </th1>
+        <tr th:each="departmnet : ${departments}">
+            <td th:text="${departmnet.getId()}"></td>
+            <td th:text="${departmnet.name}"></td>
+            <td th:text="${departmnet.hospital}"></td>
 
+            <!--            <td>-->
+            <!--                <a th:href="@{/companies(id=${company.id})}">-->
+            <!--                    <button class="btn btn-primary" type="submit">edit</button>-->
+            <!--                </a>-->
+            <!--                <a th:href="@{/url/{id}(id=${peremenyi.id})}">-->
+            <!--                    <button class="btn btn-danger" type="submit">delete</button>-->
+            <!--                </a>-->
+            <!--            </td>-->
         </tr>
         </tbody>
     </table>

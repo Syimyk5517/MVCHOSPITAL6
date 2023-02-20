@@ -24,7 +24,7 @@ public class DepartmentRepoImpl implements DepartmentRepo {
 
     @Override
     public void save(Department department) {
-     entityManager.persist(department);
+     entityManager.merge(department);
     }
 
     @Override

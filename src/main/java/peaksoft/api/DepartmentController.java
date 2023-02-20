@@ -6,8 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.exception.Exception;
 import peaksoft.models.Department;
-import peaksoft.repositories.DepartmentRepo;
-import peaksoft.repositories.HospitalRepo;
 import peaksoft.services.DepartmentService;
 import peaksoft.services.HospitalService;
 
@@ -26,8 +24,7 @@ public class DepartmentController {
           return "department/departments";
     }
     @PostMapping("/new")
-    String create(@ModelAttribute("newDepartment")Department department,
-                  @RequestParam("hospitalId") Long id) throws Exception {
+    String create(@ModelAttribute("newDepartment")Department department, @RequestParam("hospitalId") Long id) throws Exception {
          departmentService.save(id,department);
          return "redirect:/departments";
     }
@@ -35,7 +32,7 @@ public class DepartmentController {
     String save(Model model){
         model.addAttribute("department",new Department());
         model.addAttribute("hospitals",hospitalService.getAll());
-        return "department/saveDepartment";
+        return "/department/saveDepartment";
     }
 
 }
