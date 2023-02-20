@@ -5,6 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import peaksoft.models.Department;
 import peaksoft.models.Doctor;
 import peaksoft.repositories.DoctorRepo;
 
@@ -18,8 +19,8 @@ public class DoctorRepoImpl implements DoctorRepo {
     @PersistenceContext
     private EntityManager entityManager;
     @Override
-    public List<Doctor> getAll() {
-        return entityManager.createQuery("select d from Doctor d", Doctor.class).getResultList();
+    public List<Doctor> getAll(Long id) {
+        return entityManager.createQuery("select d from Doctor d where d.hospital.id = id", Doctor.class).setParameter("id",id).getResultList();
     }
 
     @Override
@@ -43,5 +44,15 @@ public class DoctorRepoImpl implements DoctorRepo {
     public void delete(Long id) {
      Doctor doctor = entityManager.find(Doctor.class,id);
      entityManager.remove(doctor);
+    }
+
+    @Override
+    public void assignDoctor(Long doctorId, Long departmentId) {
+          Doctor doctor = entityManager.find(Doctor.class,doctorId);
+          Department department = entityManager.find(Department.class,departmentId);
+          doctor.addDepartment(department);
+          department.addDoctor(doctor);
+          entityManager.merge(doctor);
+          entityManager.merge(department);
     }
 }

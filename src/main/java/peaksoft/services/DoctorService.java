@@ -8,8 +8,8 @@ import java.util.List;
 
 @Service
 public interface DoctorService {
-    List<Doctor> getAll();
-    void save(Long hospitalId,Long departmentId,Long doctorId,Doctor doctor);
+    List<Doctor> getAll(Long id);
+    void save(Long hospitalId,Doctor doctor);
     void assignDoctor(Long doctorId,Long departmentId);
     void findById(Long id);
     Doctor update(Doctor doctor);

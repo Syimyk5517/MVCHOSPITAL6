@@ -59,4 +59,5 @@ public class Hospital {
 
     @OneToMany(cascade = {ALL}, fetch = LAZY)
     private List<Appointment> appointments ;
+    private String image;
 }

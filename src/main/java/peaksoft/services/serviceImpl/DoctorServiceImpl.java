@@ -27,21 +27,27 @@ public class DoctorServiceImpl implements DoctorService {
     @PersistenceContext
     private EntityManager entityManager;
     @Override
-    public List<Doctor> getAll() {
-        return doctorRepo.getAll();
+    public List<Doctor> getAll(Long id) {
+        return doctorRepo.getAll(id);
     }
 
     @Override
-    public void save(Long hospitalId,Long departmentId,Long doctorId,Doctor doctor) {
+    public void save(Long hospitalId,Doctor doctor) {
         Hospital hospital = hospitalRepo.findById(hospitalId);
         hospital.addDoctor(doctor);
         doctor.setHospital(hospital);
         doctorRepo.save(doctor);
-        Department department = departmentRepo.finById(departmentId);
-        Doctor doctor1 = doctorRepo.findById(doctorId);
-        department.addDoctor(doctor);
-        doctor1.addDepartment(department);
-        entityManager.merge(doctor1);
+
+
+//        Hospital hospital = hospitalRepo.findById(hospitalId);
+//        hospital.addDoctor(doctor);
+//        doctor.setHospital(hospital);
+//        doctorRepo.save(doctor);
+//        Department department = departmentRepo.finById(departmentId);
+//        Doctor doctor1 = doctorRepo.findById(doctorId);
+//        department.addDoctor(doctor);
+//        doctor1.addDepartment(department);
+//        entityManager.merge(doctor1);
 
     }
 

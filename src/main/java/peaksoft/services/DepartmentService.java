@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface DepartmentService {
-    List<Department> getAll();
+    List<Department> getAll(Long id);
     void save(Long id ,Department department) throws peaksoft.exception.Exception;
     void finById(Long id);
     void deleteById(Long id);

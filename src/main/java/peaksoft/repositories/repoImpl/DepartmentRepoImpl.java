@@ -18,8 +18,9 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     @PersistenceContext
     private EntityManager entityManager;
     @Override
-    public List<Department> getAll() {
-        return entityManager.createQuery("select d from Department d", Department.class).getResultList();
+    public List<Department> getAll(Long id) {
+        return entityManager.createQuery("select d from Department d where d.hospital.id=:id", Department.class).
+                setParameter("id",id).getResultList();
     }
 
     @Override

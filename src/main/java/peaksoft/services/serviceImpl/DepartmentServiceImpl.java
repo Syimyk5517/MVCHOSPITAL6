@@ -22,25 +22,24 @@ public class DepartmentServiceImpl implements DepartmentService {
     private final HospitalRepo hospitalRepo;
 
     @Override
-    public List<Department> getAll() {
-        return departmentRepo.getAll();
+    public List<Department> getAll(Long id) {
+        return departmentRepo.getAll(id);
     }
 
     @Override
     @Transactional
     public void save(Long id, Department department) throws Exception {
         Hospital hospital = hospitalRepo.findById(id);
-      for (Department dep : departmentRepo.getAll()) {
-           if (dep.getName().equalsIgnoreCase(department.getName())) {
-              throw new BadRequestExseption("");
-
-           } else {
+//      for (Department dep : departmentRepo.getAll()) {
+//           if (dep.getName().equalsIgnoreCase(department.getName())) {
+//              throw new BadRequestExseption("");
+//           } else {
                 hospital.addDepartment(department);
                 department.setHospital(hospital);
                 departmentRepo.save(department);
           }
-      }
-    }
+//      }
+//    }
 
 
     //        System.out.println("id = " + id);
