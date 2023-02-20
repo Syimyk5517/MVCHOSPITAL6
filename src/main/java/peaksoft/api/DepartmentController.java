@@ -12,27 +12,28 @@ import peaksoft.services.HospitalService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/departments")
+@RequestMapping("/{id}/departments")
 @RequiredArgsConstructor
 public class DepartmentController {
     private final DepartmentService departmentService;
-    private final HospitalService hospitalService;
+
     @GetMapping
-    String getAllDepartments(Model model){
-        List<Department> departments = departmentService.getAll();
+    String getAllDepartments(@PathVariable("id") Long id, Model model){
+        List<Department> departments = departmentService.getAll(id);
           model.addAttribute("departments",departments);
+          model.addAttribute("hospitalId",id);
           return "department/departments";
     }
-    @PostMapping("/new")
-    String create(@ModelAttribute("newDepartment")Department department, @RequestParam("hospitalId") Long id) throws Exception {
-         departmentService.save(id,department);
-         return "redirect:/departments";
-    }
     @GetMapping("/saveDepartment")
-    String save(Model model){
+    String save(Model model,@PathVariable("id")Long id){
         model.addAttribute("department",new Department());
-        model.addAttribute("hospitals",hospitalService.getAll());
+        model.addAttribute("hospitalId",id);
         return "/department/saveDepartment";
+    }
+    @PostMapping("/new")
+    String create(@ModelAttribute("department")Department department, @PathVariable("id") Long id) throws Exception {
+         departmentService.save(id,department);
+         return "redirect:/{id}/departments";
     }
 
 }

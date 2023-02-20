@@ -26,6 +26,13 @@ public class Department {
     private String name;
     @ManyToMany(fetch = LAZY)
     List<Doctor> doctors = new ArrayList<>();
+    public void addDoctor(Doctor doctor){
+        if (doctors == null){
+            doctors = new ArrayList<>();
+        }else {
+            doctors.add(doctor);
+        }
+    }
     @ManyToOne
     private Hospital hospital;
 }
