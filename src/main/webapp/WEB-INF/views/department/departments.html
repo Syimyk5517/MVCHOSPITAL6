@@ -18,15 +18,16 @@
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
+            <th>Id</th>
             <th>Name</th>
-            <th>Action</th>
+            <th>Hospital</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="departmnet : ${departments}">
             <td th:text="${departmnet.getId()}"></td>
             <td th:text="${departmnet.name}"></td>
-            <td th:text="${departmnet.hospital}"></td>
+            <td th:text="${departmnet.hospital.name}"></td>
 
             <!--            <td>-->
             <!--                <a th:href="@{/companies(id=${company.id})}">-->

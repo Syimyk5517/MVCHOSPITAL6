@@ -3,14 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Save</title>
+  <style>
+    .btn-style{
+      border:none;
+      border-radius: 7px;
+      background-color:blue;
+      font-weight: inherit;
+      color: white;
+      padding: 10px 15px ;
+      font-size: medium;
+
+    }
+  </style>
 </head>
 <body>
 <div class="wrapper-btn">
   <a th:href="@{/}">
-    <button class="btn btn-primary" type="button">back</button>
+    <button  class="btn btn-primary btn-style" type="button">back</button>
   </a>
   <a th:href="@{/hospitals/new}">
-    <button class="btn btn-primary" type="button">Add</button>
+    <button class="btn btn-primary btn-style" type="button">Add</button>
   </a>
 </div>
 

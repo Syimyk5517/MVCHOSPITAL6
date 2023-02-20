@@ -11,7 +11,7 @@ import java.util.List;
 public interface DepartmentRepo {
     List<Department> getAll();
     void save(Department department);
-    void finById(Long id);
+    Department finById(Long id);
     void deleteById(Long id);
 
 }

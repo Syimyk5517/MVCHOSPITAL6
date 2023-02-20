@@ -24,12 +24,13 @@ public class DepartmentRepoImpl implements DepartmentRepo {
 
     @Override
     public void save(Department department) {
-     entityManager.merge(department);
+     entityManager.persist(department);
     }
 
     @Override
-    public void finById(Long id) {
-        entityManager.find(Department.class,id);
+    public Department finById(Long id) {
+       return entityManager.find(Department.class,id);
+
 
     }
     @Override
