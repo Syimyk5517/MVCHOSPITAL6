@@ -11,7 +11,7 @@ public interface DoctorRepo {
     Doctor findById(Long id);
     Doctor update(Doctor doctor);
     void delete(Long id);
-    void assignDoctor(Long doctorId,Long departmentId);
+
 
 
 

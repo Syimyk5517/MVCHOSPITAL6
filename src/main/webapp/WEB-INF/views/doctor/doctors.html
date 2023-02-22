@@ -2,8 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+
+    body{
+    background-image: url("https://www.shutterstock.com/image-photo/surgeon-female-doctor-walk-through-260nw-1189798327.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+    </style>
     <meta charset="UTF-8">
     <title>Departments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous">
 </head>
 <body>
 
@@ -14,22 +26,66 @@
     </a>
     <a th:href="@{/{id}/doctors/saveDoctor (id=${hospitalId})}">
         <button class="btn btn-primary" type="button">Create</button>
+
+
     </a>
+
+<!--    <td>-->
+<!--        <td th:each="doctor : ${doctors}">-->
+<!--        <form th:method="POST"-->
+<!--                th:action="@{/{id}/{doctors}/{doctorId}assignDoctor(id=${hospitalId},doctorId=${doctor.id})}">-->
+
+
+
+<!--            <select name="departments" class="form-select form-select-sm" aria-label=".form-select-sm example"-->
+<!--                    th:object="${doctor}" th:field="*{id}">-->
+<!--                <option th:each = "doctor${doctors}"-->
+<!--                        th:value = "${doctor.firsName}">-->
+
+<!--                </option>-->
+
+<!--            </select>-->
+<!--            <input type="submit" value="submit"/>-->
+<!--        </form>-->
+<!--</td>-->
+<!--    </td>-->
 </div>
 <div class="container mt-3">
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Position </th>
+            <th>email</th>
             <th>Hospital</th>
+            <th>Assign Department</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="doctor : ${doctors}">
             <td th:text="${doctor.id}"></td>
+            <td th:text="${doctor.firsName}"></td>
             <td th:text="${doctor.lastName}"></td>
+            <td th:text="${doctor.position}"></td>
+            <td th:text="${doctor.email}"></td>
             <td th:text="${doctor.hospital.name}"></td>
+
+            <td>
+                <form th:method="POST"
+                      th:action="@{/{id}/doctors/{doctorId}/{departmentId}/assignDoctor(id=${hospitalId})(doctorId=${doctor.id})}">
+                    <select name="instructor" class="form-select form-select-sm" aria-label=".form-select-sm example"
+                            th:object="${department}" th:field="*{id}">
+                        <option th:each="department : ${departments}"
+                                th:value="${department.id}"
+                                th:text="${department.name}"></option>
+                    </select>
+                    <input type="submit" value="submit" class="input" />
+                </form>
+            </td>
+
+
 
             <!--            <td>-->
             <!--                <a th:href="@{/companies(id=${company.id})}">-->

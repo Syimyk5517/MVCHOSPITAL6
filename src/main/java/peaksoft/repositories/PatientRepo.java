@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface PatientRepo {
-    List<Patient> getAllPatient();
+    List<Patient> getAllPatient(Long id);
     void savePatient(Patient patient);
     void finById(Long id);
     void delete(Long id);

@@ -18,8 +18,10 @@ public class PatientRepoImpl implements PatientRepo {
     @PersistenceContext
     private EntityManager entityManager;
     @Override
-    public List<Patient> getAllPatient() {
-        return entityManager.createQuery("select p from Patient p", Patient.class).getResultList();
+
+
+    public List<Patient> getAllPatient(Long id) {
+        return entityManager.createQuery("select p from Patient p where p.hospital.id =:id", Patient.class).setParameter("id",id).getResultList();
     }
 
     @Override

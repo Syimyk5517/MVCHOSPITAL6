@@ -5,7 +5,9 @@ import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import peaksoft.exception.BadRequestExseption;
 import peaksoft.models.Department;
+import peaksoft.models.Doctor;
 import peaksoft.repositories.DepartmentRepo;
 
 import java.util.List;
@@ -38,5 +40,23 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     public void deleteById(Long id) {
         Department department = entityManager.find(Department.class, id);
         entityManager.remove(department);
+    }
+
+    @Override
+    public void assignDoctor(Long doctorId, Long departmentId) {
+        Doctor doctor = entityManager.find(Doctor.class,doctorId);
+        Department department = entityManager.find(Department.class,departmentId);
+        for (Department dep: doctor.getDepartments()) {
+            if (dep.getName().equalsIgnoreCase(department.getName())){
+                throw new BadRequestExseption("LLLLL");
+            }else {
+
+        doctor.addDepartment(department);
+        department.addDoctor(doctor);
+        entityManager.merge(doctor);
+        entityManager.merge(department);
+            }
+
+        }
     }
 }

@@ -7,32 +7,37 @@ import org.springframework.web.bind.annotation.*;
 import peaksoft.exception.Exception;
 import peaksoft.models.Department;
 import peaksoft.models.Patient;
+import peaksoft.models.enums.Gender;
 import peaksoft.services.HospitalService;
 import peaksoft.services.PatientService;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/patients")
+@RequestMapping("/{id}/patients")
 @RequiredArgsConstructor
 public class PatientController {
     private final PatientService patientService;
-    private final HospitalService hospitalService;
+ ;
     @GetMapping
-    String getAllDepartments(Model model){
-       List<Patient> patients = patientService.getAllPatient();
+    String getAllDepartments(@PathVariable("id") Long id,Model model){
+       List<Patient> patients = patientService.getAllPatient(id);
         model.addAttribute("patients",patients);
+        model.addAttribute("hospitalId",id);
+
         return "patient/patients";
     }
-    @PostMapping("/new")
-    String create(@ModelAttribute("newPatient")Patient patient, @RequestParam("hospitalId") Long id) throws Exception {
-          patientService.savePatient(id,patient);
-        return "redirect:/patients";
-    }
     @GetMapping("/savePatient")
-    String save(Model model){
+    String save(Model model,@PathVariable("id")Long id){
         model.addAttribute("patient",new Patient());
-        model.addAttribute("hospitals",hospitalService.getAll());
+        model.addAttribute("hospitalId",id);
+        model.addAttribute("male", Gender.MALE.name());
+        model.addAttribute("female", Gender.FEMALE.name());
         return "/patient/savePatient";
+    }
+    @PostMapping("/new")
+    String create(@ModelAttribute("newPatient")Patient patient, @PathVariable("id") Long id) throws Exception {
+          patientService.savePatient(id,patient);
+        return "redirect:/{id}/patients";
     }
 }

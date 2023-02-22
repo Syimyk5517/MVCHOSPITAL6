@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import peaksoft.exception.Exception;
 import peaksoft.models.Department;
 import peaksoft.services.DepartmentService;
-import peaksoft.services.HospitalService;
+
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class DepartmentController {
         model.addAttribute("hospitalId",id);
         return "/department/saveDepartment";
     }
-    @PostMapping("/new")
+@PostMapping("/new")
     String create(@ModelAttribute("department")Department department, @PathVariable("id") Long id) throws Exception {
          departmentService.save(id,department);
          return "redirect:/{id}/departments";

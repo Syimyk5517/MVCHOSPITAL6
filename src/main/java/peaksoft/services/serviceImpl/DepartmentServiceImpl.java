@@ -30,16 +30,16 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Transactional
     public void save(Long id, Department department) throws Exception {
         Hospital hospital = hospitalRepo.findById(id);
-//      for (Department dep : departmentRepo.getAll()) {
-//           if (dep.getName().equalsIgnoreCase(department.getName())) {
-//              throw new BadRequestExseption("");
-//           } else {
+      for (Department dep : departmentRepo.getAll(id)) {
+           if (dep.getName().equalsIgnoreCase(department.getName())) {
+              throw new BadRequestExseption("");
+           } else {
                 hospital.addDepartment(department);
                 department.setHospital(hospital);
                 departmentRepo.save(department);
           }
-//      }
-//    }
+      }
+    }
 
 
     //        System.out.println("id = " + id);
@@ -66,5 +66,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void deleteById(Long id) {
         departmentRepo.deleteById(id);
+    }
+
+    @Override
+    public void assignDoctor(Long doctorId, Long departmentId) {
+        departmentRepo.assignDoctor(doctorId,departmentId);
     }
 }

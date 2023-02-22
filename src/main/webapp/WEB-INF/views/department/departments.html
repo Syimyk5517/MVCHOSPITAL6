@@ -2,8 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<style>
+    body{
+        background-image: url("https://thumbs.dreamstime.com/b/hospital-departments-icons-set-vector-illustrations-white-background-hospital-departments-icons-set-vector-illustrations-142980785.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
     <meta charset="UTF-8">
     <title>Departments</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+    crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -31,14 +43,6 @@
             <td th:text="${departmnet.name}"></td>
             <td th:text="${departmnet.hospital.name}"></td>
 
-            <!--            <td>-->
-            <!--                <a th:href="@{/companies(id=${company.id})}">-->
-            <!--                    <button class="btn btn-primary" type="submit">edit</button>-->
-            <!--                </a>-->
-            <!--                <a th:href="@{/url/{id}(id=${peremenyi.id})}">-->
-            <!--                    <button class="btn btn-danger" type="submit">delete</button>-->
-            <!--                </a>-->
-            <!--            </td>-->
         </tr>
         </tbody>
     </table>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import peaksoft.exception.Exception;
 import peaksoft.models.Department;
 import peaksoft.models.Doctor;
+import peaksoft.services.DepartmentService;
 import peaksoft.services.DoctorService;
 
 import java.util.List;
@@ -16,12 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorController {
     private final DoctorService doctorService;
-
+    private final DepartmentService departmentService;
 
     @GetMapping
-    String getAllDepartments(@PathVariable("id") Long id, Model model){
-        List<Doctor> doctors  = doctorService.getAll(id);
-        model.addAttribute("doctors",doctors);
+    String getAllDepartments(@PathVariable("id") Long id, Model model,@ModelAttribute("department")Department department){
+        model.addAttribute("doctors",doctorService.getAll(id));
+        model.addAttribute("departments",departmentService.getAll(id));
         model.addAttribute("hospitalId",id);
         return "doctor/doctors";
     }
@@ -35,5 +36,11 @@ public class DoctorController {
     String create(@ModelAttribute("doctor")Doctor doctor, @PathVariable("id") Long id) {
         doctorService.save(id,doctor);
         return "redirect:/{id}/doctors";
+    }
+    @PostMapping("/{doctorId}/{department}/assignDoctor")
+    String assignDoctor(@PathVariable("doctorId")Long doctorId,@ModelAttribute("department") Department department){
+        System.out.println("hello");
+          departmentService.assignDoctor(doctorId, department.getId()  );
+        return "redirect:/doctors/"+doctorId;
     }
 }

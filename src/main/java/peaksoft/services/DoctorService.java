@@ -10,7 +10,7 @@ import java.util.List;
 public interface DoctorService {
     List<Doctor> getAll(Long id);
     void save(Long hospitalId,Doctor doctor);
-    void assignDoctor(Long doctorId,Long departmentId);
+
     void findById(Long id);
     Doctor update(Doctor doctor);
     void delete(Long id);

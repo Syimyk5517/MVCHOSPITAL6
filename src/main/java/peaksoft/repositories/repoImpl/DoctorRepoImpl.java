@@ -46,13 +46,5 @@ public class DoctorRepoImpl implements DoctorRepo {
      entityManager.remove(doctor);
     }
 
-    @Override
-    public void assignDoctor(Long doctorId, Long departmentId) {
-          Doctor doctor = entityManager.find(Doctor.class,doctorId);
-          Department department = entityManager.find(Department.class,departmentId);
-          doctor.addDepartment(department);
-          department.addDoctor(doctor);
-          entityManager.merge(doctor);
-          entityManager.merge(department);
-    }
+
 }

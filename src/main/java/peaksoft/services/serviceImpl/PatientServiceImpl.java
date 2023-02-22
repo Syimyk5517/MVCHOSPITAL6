@@ -20,8 +20,8 @@ public class PatientServiceImpl implements PatientService {
     private final HospitalRepo hospitalRepo;
 
     @Override
-    public List<Patient> getAllPatient() {
-        return patientRepo.getAllPatient() ;
+    public List<Patient> getAllPatient(Long id) {
+        return patientRepo.getAllPatient( id) ;
     }
 
     @Override

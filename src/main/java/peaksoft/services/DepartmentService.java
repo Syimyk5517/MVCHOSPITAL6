@@ -11,4 +11,5 @@ public interface DepartmentService {
     void save(Long id ,Department department) throws peaksoft.exception.Exception;
     void finById(Long id);
     void deleteById(Long id);
+    void assignDoctor(Long doctorId,Long departmentId);
 }
