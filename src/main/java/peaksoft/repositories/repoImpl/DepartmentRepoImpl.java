@@ -50,7 +50,6 @@ public class DepartmentRepoImpl implements DepartmentRepo {
             if (dep.getName().equalsIgnoreCase(department.getName())){
                 throw new BadRequestExseption("LLLLL");
             }else {
-
         doctor.addDepartment(department);
         department.addDoctor(doctor);
         entityManager.merge(doctor);

@@ -59,5 +59,10 @@ public class Hospital {
 
     @OneToMany(cascade = {ALL}, fetch = LAZY)
     private List<Appointment> appointments ;
+    public  void  addAppointment(Appointment appointment){
+        if(appointments == null){
+            appointments = new ArrayList<>();
+        }appointments.add(appointment);
+    }
     private String image;
 }

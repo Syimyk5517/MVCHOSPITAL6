@@ -18,7 +18,26 @@ public class AppointmentRepoImpl implements AppointmentRepo {
     @PersistenceContext
     private final EntityManager entityManager;
     @Override
-    public List<Appointment> findAll() {
-        return entityManager.createQuery("select a from Appointment a", Appointment.class).getResultList();
+    public List<Appointment> findAll(Long id) {
+        return entityManager.createQuery("select a from Appointment a join Department d on d.hospital.id = a.id where d.hospital.id=:id" , Appointment.class).setParameter("id",id).getResultList();
+    }
+
+    @Override
+    public void save(Appointment appointment) {
+        entityManager.persist(appointment);
+
+    }
+
+    @Override
+    public void getById(Long id) {
+        Appointment appointment = entityManager.find(Appointment.class, id);
+
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        Appointment appointment = entityManager.find(Appointment.class, id);
+        entityManager.remove(appointment);
+
     }
 }

@@ -24,7 +24,6 @@ public class PatientController {
        List<Patient> patients = patientService.getAllPatient(id);
         model.addAttribute("patients",patients);
         model.addAttribute("hospitalId",id);
-
         return "patient/patients";
     }
     @GetMapping("/savePatient")

@@ -9,6 +9,13 @@ import java.util.List;
 
 @Repository
 public interface AppointmentRepo {
-    List<Appointment> findAll();
+    List<Appointment> findAll(Long id);
+    void save(Appointment appointment);
+    void getById(Long id);
+    void deleteById(Long id);
+
+
+
+
 
 }

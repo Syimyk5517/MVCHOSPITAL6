@@ -10,7 +10,7 @@ import java.util.List;
 public interface PatientRepo {
     List<Patient> getAllPatient(Long id);
     void savePatient(Patient patient);
-    void finById(Long id);
+    Patient finById(Long id);
     void delete(Long id);
     Patient updatePatient(Patient patient);
 

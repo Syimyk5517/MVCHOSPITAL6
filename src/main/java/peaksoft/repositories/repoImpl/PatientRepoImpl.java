@@ -18,8 +18,6 @@ public class PatientRepoImpl implements PatientRepo {
     @PersistenceContext
     private EntityManager entityManager;
     @Override
-
-
     public List<Patient> getAllPatient(Long id) {
         return entityManager.createQuery("select p from Patient p where p.hospital.id =:id", Patient.class).setParameter("id",id).getResultList();
     }
@@ -30,8 +28,9 @@ public class PatientRepoImpl implements PatientRepo {
     }
 
     @Override
-    public void finById(Long id) {
+    public Patient finById(Long id) {
         entityManager.find(Patient.class,id);
+        return null;
     }
 
     @Override

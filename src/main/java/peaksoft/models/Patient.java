@@ -43,4 +43,9 @@ public class Patient {
 
     @OneToMany(mappedBy = "patient", cascade = {ALL}, fetch = LAZY)
     private List<Appointment> appointments = new ArrayList<>();
+    public void addAppointment(Appointment appointment){
+        if (appointments == null){
+            appointments = new ArrayList<>();
+        }appointments.add(appointment);
+    }
 }

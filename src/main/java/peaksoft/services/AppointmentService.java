@@ -10,6 +10,9 @@ import java.util.List;
 @Service
 
 public interface AppointmentService {
-    List<Appointment> findAll();
+    List<Appointment> findAll(Long id);
+    void save(Long hospitalId,Long patientId, Long doctorId, Long departmentId,Appointment appointment);
+    void getById(Long id);
+    void deleteById(Long id);
 
 }
