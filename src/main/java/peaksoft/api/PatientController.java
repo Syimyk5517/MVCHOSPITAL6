@@ -5,10 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.exception.Exception;
-import peaksoft.models.Department;
 import peaksoft.models.Patient;
 import peaksoft.models.enums.Gender;
-import peaksoft.services.HospitalService;
 import peaksoft.services.PatientService;
 
 import java.util.List;
@@ -35,7 +33,7 @@ public class PatientController {
         return "/patient/savePatient";
     }
     @PostMapping("/new")
-    String create(@ModelAttribute("newPatient")Patient patient, @PathVariable("id") Long id) throws Exception {
+    String create(@ModelAttribute("patient")Patient patient, @PathVariable("id") Long id) throws Exception {
           patientService.savePatient(id,patient);
         return "redirect:/{id}/patients";
     }

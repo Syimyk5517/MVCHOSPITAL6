@@ -21,8 +21,7 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     private EntityManager entityManager;
     @Override
     public List<Department> getAll(Long id) {
-        return entityManager.createQuery("select d from Department d where d.hospital.id=:id", Department.class).
-                setParameter("id",id).getResultList();
+        return entityManager.createQuery("select d from Department d where d.hospital.id=:id", Department.class).setParameter("id",id).getResultList();
     }
 
     @Override
@@ -39,6 +38,8 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     @Override
     public void deleteById(Long id) {
         Department department = entityManager.find(Department.class, id);
+        department.setHospital(null);
+        department.setDoctors(null);
         entityManager.remove(department);
     }
 

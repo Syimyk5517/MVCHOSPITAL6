@@ -42,4 +42,11 @@ public class DoctorController {
           departmentService.assignDoctor(doctorId, department.getId()  );
         return "redirect:/doctors/"+doctorId;
     }
+    @DeleteMapping("{doctorId}/delete")
+    String deleteById(@PathVariable("doctorId") Long id) {
+        doctorService.delete(id);
+        return "redirect:/{id}/doctors";
+
+    }
+
 }

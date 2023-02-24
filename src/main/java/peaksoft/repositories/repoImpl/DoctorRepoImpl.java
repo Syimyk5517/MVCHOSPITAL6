@@ -22,7 +22,6 @@ public class DoctorRepoImpl implements DoctorRepo {
     public List<Doctor> getAll(Long id) {
         return entityManager.createQuery("select d from Doctor d where d.hospital.id =:id", Doctor.class).setParameter("id",id).getResultList();
     }
-
     @Override
     public void save(Doctor doctor) {
         entityManager.persist(doctor);
@@ -42,7 +41,10 @@ public class DoctorRepoImpl implements DoctorRepo {
 
     @Override
     public void delete(Long id) {
+        System.out.println("syi");
      Doctor doctor = entityManager.find(Doctor.class,id);
+     doctor.setHospital(null);
+     doctor.setDepartments(null);
      entityManager.remove(doctor);
     }
 

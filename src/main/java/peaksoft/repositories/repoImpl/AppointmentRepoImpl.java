@@ -19,7 +19,7 @@ public class AppointmentRepoImpl implements AppointmentRepo {
     private final EntityManager entityManager;
     @Override
     public List<Appointment> findAll(Long id) {
-        return entityManager.createQuery("select a from Appointment a join Department d on d.hospital.id = a.id where d.hospital.id=:id" , Appointment.class).setParameter("id",id).getResultList();
+       return entityManager.createQuery("select a from Appointment a where a.department.hospital.id =:id", Appointment.class).setParameter("id",id).getResultList();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class AppointmentRepoImpl implements AppointmentRepo {
 
     @Override
     public void getById(Long id) {
-        Appointment appointment = entityManager.find(Appointment.class, id);
+      entityManager.find(Appointment.class, id);
 
     }
 

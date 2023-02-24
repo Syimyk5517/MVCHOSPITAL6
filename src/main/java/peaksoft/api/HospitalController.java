@@ -36,4 +36,17 @@ public class HospitalController {
         hospitalService.deleteById(id);
         return "redirect:/hospitals";
     }
+    @GetMapping("/{id}/edit")
+      String getUbdate(@PathVariable("id")Long id,Model model){
+        System.out.println("kjlsd;");
+        model.addAttribute("hospital",hospitalService.findById(id));
+        System.out.println("Syi");
+        return "hospital/ubdateHospital";
+    }
+    @PostMapping("/{id}/up")
+      String ubdateHospital(@PathVariable("id")Long id,@ModelAttribute("hospital")Hospital hospital){
+        System.out.println("skcl");
+        hospitalService.ubdateHospital(id,hospital);
+        return "redirect:/hospitals";
+    }
 }

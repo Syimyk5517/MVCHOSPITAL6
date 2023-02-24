@@ -49,4 +49,10 @@ public class HospitalServiceImpl implements HospitalService {
         hospitalRepo.deleteById(id);
 
     }
+
+    @Override
+    public void ubdateHospital(Long id, Hospital newHospital) {
+        System.out.println("jskfn");
+        hospitalRepo.ubdateHospital(id,newHospital);
+    }
 }

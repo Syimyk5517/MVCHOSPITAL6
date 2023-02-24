@@ -23,9 +23,6 @@ import java.util.List;
 public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepo doctorRepo;
     private final HospitalRepo hospitalRepo;
-    private final DepartmentRepo departmentRepo;
-    @PersistenceContext
-    private EntityManager entityManager;
     @Override
     public List<Doctor> getAll(Long id) {
         return doctorRepo.getAll(id);
@@ -38,23 +35,12 @@ public class DoctorServiceImpl implements DoctorService {
         doctor.setHospital(hospital);
         doctorRepo.save(doctor);
 
-
-//        Hospital hospital = hospitalRepo.findById(hospitalId);
-//        hospital.addDoctor(doctor);
-//        doctor.setHospital(hospital);
-//        doctorRepo.save(doctor);
-//        Department department = departmentRepo.finById(departmentId);
-//        Doctor doctor1 = doctorRepo.findById(doctorId);
-//        department.addDoctor(doctor);
-//        doctor1.addDepartment(department);
-//        entityManager.merge(doctor1);
-
     }
 
 
     @Override
     public void findById(Long id) {
-
+       doctorRepo.findById(id);
     }
 
     @Override
@@ -64,6 +50,6 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public void delete(Long id) {
-
+      doctorRepo.delete(id);
     }
 }

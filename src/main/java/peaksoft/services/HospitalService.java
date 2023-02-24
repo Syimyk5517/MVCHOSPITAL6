@@ -12,4 +12,5 @@ public interface HospitalService {
     void save(Hospital hospital);
     Hospital findById(Long id);
     void deleteById(Long id);
+    void ubdateHospital(Long id,Hospital newHospital);
 }

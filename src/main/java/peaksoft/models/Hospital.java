@@ -26,8 +26,6 @@ public class Hospital {
     private String name;
     private String address;
 
-
-
     @OneToMany(mappedBy = "hospital",cascade = {ALL}, fetch = LAZY)
     private List<Doctor> doctors = new ArrayList<>();
     public void addDoctor(Doctor doctor){
@@ -38,7 +36,7 @@ public class Hospital {
         }
     }
 
-    @OneToMany(mappedBy = "hospital", fetch = LAZY)
+    @OneToMany(mappedBy = "hospital",cascade = {ALL} ,fetch = LAZY)
     private List<Patient> patients = new ArrayList<>();
     public void addPatient(Patient patient){
         if (patients == null){

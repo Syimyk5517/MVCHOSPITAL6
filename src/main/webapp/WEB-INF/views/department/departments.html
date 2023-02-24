@@ -2,51 +2,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
 
-<style>
-    body{
-        background-image: url("https://thumbs.dreamstime.com/b/hospital-departments-icons-set-vector-illustrations-white-background-hospital-departments-icons-set-vector-illustrations-142980785.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-</style>
+        body{
+            background-image: url("https://www.shutterstock.com/image-photo/surgeon-female-doctor-walk-through-260nw-1189798327.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    </style>
     <meta charset="UTF-8">
     <title>Departments</title>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-    crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous">
 </head>
 <body>
 
-<div class="wrapper-btn">
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <th>Id</th>
+        <th>Department Name</th>
+        <th>Hospital</th>
+        <th>Appointment</th>
 
-    <a th:href="@{/url}">
-        <button class="btn btn-primary" type="button">back</button>
-    </a>
-    <a th:href="@{/{id}/departments/saveDepartment (id=${hospitalId})}">
-        <button class="btn btn-primary" type="button">Create</button>
-    </a>
-</div>
-<div class="container mt-3">
-    <table class="table table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Hospital</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="department : ${departments}">
-            <td th:text="${department.getId()}"></td>
-            <td th:text="${department.name}"></td>
-            <td th:text="${department.hospital.name}"></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="deparment : ${departments}">
+        <td th:text="${deparment.id}"></td>
+        <td th:text="${deparment.name}"></td>
+        <td th:text="${deparment.hospital.name}"></td>
 
-        </tr>
-        </tbody>
-    </table>
-</div>
+
+        <td>
+            <a>
+            <form th:method="DELETE"
+                  th:action="@{/{id}/departments/{departmentId}/delete(id=${hospitalId}, departmentId=${deparment.id})}">
+                <input type="submit" class="btn btn-outline-primary" th:value="  Delete  "></input>
+            </form>
+            </a>
+    </tr>
+            <a th:href="@{/{id}/departments/saveDepartment (id=${hospitalId})}">
+                <button class="btn btn-primary" type="button">Create</button>
+            </a>
+    </tbody>
+</table>
+
 
 </body>
 </html>

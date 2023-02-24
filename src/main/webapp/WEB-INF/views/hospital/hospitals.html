@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title>Main Page</title>
@@ -70,12 +70,19 @@
                   <a th:href="@{/{id}/patients(id=${hospital.getId()})}">
                       <input type="submit" class="btn btn-outline-primary" th:value="  Patients  "/>
                   </a>
+                  <a th:href="@{/{id}/appointments(id=${hospital.id})}">
+                      <input type="submit" class="btn btn-outline-primary" th:value="  Appointments  "/>
+                  </a>
               </div>
               <div>
                   <form th:method="DELETE" th:action="@{/hospitals/{id}/delete(id=${hospital.getId()})}">
                       <input type="submit" class="btn btn-outline-primary"  th:value="  Delete  "/>
                   </form>
+                  <a th:href="@{/hospitals/{id}/edit(id=${hospital.id})}">
+                      <input type="submit" class="btn btn-outline-primary"  th:value="  Update  ">
+                  </a>
               </div>
+
           </div>
   </div>
 </div>

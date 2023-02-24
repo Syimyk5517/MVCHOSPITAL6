@@ -41,7 +41,7 @@ public class Patient {
             fetch = EAGER)
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "patient", cascade = {ALL}, fetch = LAZY)
+    @OneToMany(mappedBy = "patient", cascade = {ALL}, fetch = EAGER)
     private List<Appointment> appointments = new ArrayList<>();
     public void addAppointment(Appointment appointment){
         if (appointments == null){

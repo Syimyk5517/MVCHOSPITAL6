@@ -7,6 +7,8 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.*;
+import static jakarta.persistence.CascadeType.PERSIST;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -24,7 +26,7 @@ public class Department {
     private Long id;
      @Column
     private String name;
-    @ManyToMany(fetch = LAZY)
+    @ManyToMany(cascade = {REFRESH, DETACH, MERGE, PERSIST},fetch = LAZY)
     List<Doctor> doctors = new ArrayList<>();
     public void addDoctor(Doctor doctor){
         if (doctors == null){
@@ -33,6 +35,6 @@ public class Department {
             doctors.add(doctor);
         }
     }
-    @ManyToOne
+    @ManyToOne(cascade = {REFRESH, DETACH, MERGE, PERSIST})
     private Hospital hospital;
 }

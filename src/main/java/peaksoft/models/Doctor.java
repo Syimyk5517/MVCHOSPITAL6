@@ -8,6 +8,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.*;
+import static jakarta.persistence.CascadeType.PERSIST;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -31,7 +33,7 @@ public class Doctor {
 
     private String email;
 
-    @ManyToMany(mappedBy = "doctors",fetch = LAZY)
+    @ManyToMany(mappedBy = "doctors",fetch = LAZY,cascade = {REFRESH, DETACH, MERGE, PERSIST})
     private List<Department> departments = new ArrayList<>();
     public  void addDepartment(Department department){
         if (departments == null){
@@ -41,9 +43,9 @@ public class Doctor {
         }
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = {REFRESH, DETACH, MERGE, PERSIST})
     private Hospital hospital;
-    @OneToMany(mappedBy = "doctor", fetch = LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doctor", fetch = LAZY,cascade = {ALL})
     private List<Appointment> appointments = new ArrayList<>();
     public void addAppointment(Appointment appointment){
         if (appointments == null){

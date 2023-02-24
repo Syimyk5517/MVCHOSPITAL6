@@ -39,4 +39,15 @@ public class HospitalRepoImpl implements HospitalRepo {
         entityManager.remove(hospital);
 
     }
+
+    @Override
+    public void ubdateHospital(Long id,Hospital newHospital) {
+        System.out.println("sjdk");
+        Hospital hospital = entityManager.find(Hospital.class, id);
+        hospital.setImage(newHospital.getImage());
+        hospital.setName(newHospital.getName());
+        hospital.setAddress(newHospital.getAddress());
+        entityManager.merge(newHospital);
+
+    }
 }

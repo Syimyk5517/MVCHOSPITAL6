@@ -29,8 +29,8 @@ public class PatientRepoImpl implements PatientRepo {
 
     @Override
     public Patient finById(Long id) {
-        entityManager.find(Patient.class,id);
-        return null;
+        Patient patient = entityManager.find(Patient.class, id);
+        return patient;
     }
 
     @Override

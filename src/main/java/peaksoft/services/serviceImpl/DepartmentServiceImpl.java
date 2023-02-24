@@ -30,15 +30,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Transactional
     public void save(Long id, Department department) throws Exception {
         Hospital hospital = hospitalRepo.findById(id);
-      for (Department dep : departmentRepo.getAll(id)) {
-           if (dep.getName().equalsIgnoreCase(department.getName())) {
-              throw new BadRequestExseption("");
-           } else {
+//      for (Department dep : departmentRepo.getAll(id)) {
+//           if (dep.getName().equalsIgnoreCase(department.getName())) {
+//              throw new BadRequestExseption("");
+//           } else {
                 hospital.addDepartment(department);
                 department.setHospital(hospital);
                 departmentRepo.save(department);
-          }
-      }
+//          }
+//      }
     }
 
 
