@@ -39,8 +39,8 @@ public class DoctorServiceImpl implements DoctorService {
 
 
     @Override
-    public void findById(Long id) {
-       doctorRepo.findById(id);
+    public Doctor findById(Long id) {
+       return doctorRepo.findById(id);
     }
 
     @Override

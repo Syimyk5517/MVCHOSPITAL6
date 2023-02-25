@@ -41,8 +41,8 @@
     }
 
     .card{
-        width: 18rem;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        margin: 10px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 45px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
     }
   </style>
@@ -51,9 +51,9 @@
         crossorigin="anonymous">
 </head>
 <body>
-<div class="container" style="width: 78%; margin: 0 auto">
+<div class="container" style="width: 98%; margin: auto">
   <div class="card" th:each="hospital:${hospitals}" >
-      <img th:src="${hospital.getImage()}" object-fit width="223" height="170px" class="card-img-top" alt="Image">
+      <img th:src="${hospital.image}" object-fit width="223" height="170px" class="card-img-top" alt="Image">
       <div class="card-body">
       <h5 class="card-title" th:text="${hospital.name}">Name</h5>
       <p class="card-text" th:text="${hospital.address}">Address</p>

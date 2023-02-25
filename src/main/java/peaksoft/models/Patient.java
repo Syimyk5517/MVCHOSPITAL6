@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 import peaksoft.models.enums.Gender;
 
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ import java.util.List;
 
 import static jakarta.persistence.CascadeType.*;
 import static jakarta.persistence.FetchType.EAGER;
-import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 
@@ -20,6 +20,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Getter
 @Setter
 @NoArgsConstructor
+@Validated
 @Table(name = "patients")
 public class Patient {
     @Id
@@ -34,14 +35,13 @@ public class Patient {
     private String phoneNumber;
 
     private Gender gender;
-
     private String email;
 
-    @ManyToOne(cascade = {REFRESH, DETACH, MERGE, PERSIST},
+    @ManyToOne(cascade = {DETACH,REFRESH, MERGE},
             fetch = EAGER)
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "patient", cascade = {ALL}, fetch = EAGER)
+    @OneToMany(mappedBy = "patient", cascade = ALL, fetch = EAGER)
     private List<Appointment> appointments = new ArrayList<>();
     public void addAppointment(Appointment appointment){
         if (appointments == null){

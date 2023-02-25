@@ -9,6 +9,7 @@ import java.util.List;
 
 import static jakarta.persistence.CascadeType.*;
 import static jakarta.persistence.CascadeType.PERSIST;
+import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -24,17 +25,19 @@ public class Department {
     @GeneratedValue(strategy = SEQUENCE, generator = "department_id_gen")
     @SequenceGenerator(name = "department_id_gen", sequenceName = "department_id_seq", allocationSize = 12)
     private Long id;
-     @Column
+    @Column
     private String name;
-    @ManyToMany(cascade = {REFRESH, DETACH, MERGE, PERSIST},fetch = LAZY)
+    @ManyToMany(cascade = {REFRESH, DETACH, MERGE}, fetch = EAGER)
     List<Doctor> doctors = new ArrayList<>();
-    public void addDoctor(Doctor doctor){
-        if (doctors == null){
+
+    public void addDoctor(Doctor doctor) {
+        if (doctors == null) {
             doctors = new ArrayList<>();
-        }else {
+        } else {
             doctors.add(doctor);
         }
     }
-    @ManyToOne(cascade = {REFRESH, DETACH, MERGE, PERSIST})
+
+    @ManyToOne(cascade = {REFRESH, DETACH, MERGE})
     private Hospital hospital;
 }

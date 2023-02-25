@@ -10,6 +10,7 @@ import java.util.List;
 
 import static jakarta.persistence.CascadeType.*;
 import static jakarta.persistence.CascadeType.PERSIST;
+import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -33,7 +34,7 @@ public class Doctor {
 
     private String email;
 
-    @ManyToMany(mappedBy = "doctors",fetch = LAZY,cascade = {REFRESH, DETACH, MERGE, PERSIST})
+    @ManyToMany(mappedBy = "doctors",fetch = LAZY,cascade = {REFRESH, DETACH, MERGE})
     private List<Department> departments = new ArrayList<>();
     public  void addDepartment(Department department){
         if (departments == null){
@@ -43,13 +44,15 @@ public class Doctor {
         }
     }
 
-    @ManyToOne(cascade = {REFRESH, DETACH, MERGE, PERSIST})
+    @ManyToOne(cascade = {REFRESH, DETACH, MERGE})
     private Hospital hospital;
-    @OneToMany(mappedBy = "doctor", fetch = LAZY,cascade = {ALL})
+    @OneToMany(mappedBy = "doctor", fetch = EAGER,cascade = ALL)
     private List<Appointment> appointments = new ArrayList<>();
     public void addAppointment(Appointment appointment){
         if (appointments == null){
             appointments = new ArrayList<>();
         }appointments.add(appointment);
     }
+    @Transient
+    private Long departmentId;
 }

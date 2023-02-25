@@ -1,6 +1,7 @@
 package peaksoft.services;
 
 import peaksoft.models.Department;
+import peaksoft.models.Doctor;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ public interface DepartmentService {
     void save(Long id ,Department department) throws peaksoft.exception.Exception;
     void finById(Long id);
     void deleteById(Long id);
-    void assignDoctor(Long doctorId,Long departmentId);
+    void assignDoctor(Long doctorId, Doctor doctor);
 }

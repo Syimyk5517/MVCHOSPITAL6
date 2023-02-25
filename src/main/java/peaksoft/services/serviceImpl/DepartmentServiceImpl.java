@@ -3,11 +3,12 @@ package peaksoft.services.serviceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import peaksoft.exception.BadRequestExseption;
 import peaksoft.exception.Exception;
 import peaksoft.models.Department;
+import peaksoft.models.Doctor;
 import peaksoft.models.Hospital;
 import peaksoft.repositories.DepartmentRepo;
+import peaksoft.repositories.DoctorRepo;
 import peaksoft.repositories.HospitalRepo;
 import peaksoft.services.DepartmentService;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
     private final DepartmentRepo departmentRepo;
     private final HospitalRepo hospitalRepo;
+    private final DoctorRepo doctorRepo;
 
     @Override
     public List<Department> getAll(Long id) {
@@ -69,7 +71,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void assignDoctor(Long doctorId, Long departmentId) {
-        departmentRepo.assignDoctor(doctorId,departmentId);
+    public void assignDoctor(Long doctorId, Doctor doctor) {
+        Department department = departmentRepo.finById(doctor.getDepartmentId());
+        Doctor oldDoctor = doctorRepo.findById(doctorId);
+        oldDoctor.addDepartment(department);
+        department.addDoctor(oldDoctor);
+        departmentRepo.assignDoctor(oldDoctor);
     }
 }

@@ -4,13 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import peaksoft.exception.Exception;
 import peaksoft.models.Department;
 import peaksoft.models.Doctor;
 import peaksoft.services.DepartmentService;
 import peaksoft.services.DoctorService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/{id}/doctors")
@@ -37,15 +34,32 @@ public class DoctorController {
         doctorService.save(id,doctor);
         return "redirect:/{id}/doctors";
     }
-    @PostMapping("/{doctorId}/{department}/assignDoctor")
-    String assignDoctor(@PathVariable("doctorId")Long doctorId,@ModelAttribute("department") Department department){
-          departmentService.assignDoctor(doctorId, department.getId()  );
-        return "redirect:/doctors/"+doctorId;
+    @GetMapping("/{doctorId}/departments")
+    String departments(@PathVariable("id")Long id,
+                       @PathVariable("doctorId")Long doctorId,
+                       Model model){
+        model.addAttribute("doctor", doctorService.findById(doctorId));
+        model.addAttribute("departments", departmentService.getAll(id));
+        model.addAttribute("doctors",doctorService.getAll(id));
+        return "doctor/departments";
+    }
+    @GetMapping("/{doctorId}/assignDepartment")
+    String assignToDepartment(@PathVariable("id")Long id, @PathVariable("doctorId")Long doctorId, Model model){
+        model.addAttribute("doctor", new Doctor());
+        model.addAttribute("departments", departmentService.getAll(id));
+        return "doctor/assignToDepartment";
+    }
+    @PostMapping("/{doctorId}/saveAssignDepartment")
+    String saveAssignDepartment(@PathVariable("id")Long id,
+                        @PathVariable("doctorId")Long doctorId,
+                        @ModelAttribute("doctor") Doctor doctor){
+        departmentService.assignDoctor(doctorId, doctor);
+        return "redirect:/{id}/doctors";
     }
     @DeleteMapping("{doctorId}/delete")
-    String deleteById(@PathVariable("doctorId") Long id) {
-        doctorService.delete(id);
-        return "redirect:/{id}/doctors";
+    String deleteById(@PathVariable("doctorId") Long doctorId, @PathVariable String id) {
+        doctorService.delete(doctorId);
+        return "redirect:/doctors"+doctorId;
 
     }
 

@@ -5,7 +5,6 @@ import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import peaksoft.exception.BadRequestExseption;
 import peaksoft.models.Department;
 import peaksoft.models.Doctor;
 import peaksoft.repositories.DepartmentRepo;
@@ -44,19 +43,19 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     }
 
     @Override
-    public void assignDoctor(Long doctorId, Long departmentId) {
-        Doctor doctor = entityManager.find(Doctor.class,doctorId);
-        Department department = entityManager.find(Department.class,departmentId);
-        for (Department dep: doctor.getDepartments()) {
-            if (dep.getName().equalsIgnoreCase(department.getName())){
-                throw new BadRequestExseption("LLLLL");
-            }else {
-        doctor.addDepartment(department);
-        department.addDoctor(doctor);
+    public void assignDoctor(Doctor doctor) {
+//        Doctor doctor = entityManager.find(Doctor.class,doctorId);
+//        Department department = entityManager.find(Department.class,departmentId);
+////        for (Department dep: doc.getDepartments()) {
+////            if (dep.getName().equalsIgnoreCase(department.getName())){
+////                throw new BadRequestExseption("LLLLL");
+////            }else {
+//        doctor.addDepartment(department);
+//        department.addDoctor(doctor);
+//        entityManager.merge(doctor);
+//        entityManager.merge(department);
+//            }
+//        }
         entityManager.merge(doctor);
-        entityManager.merge(department);
-            }
-
-        }
     }
 }

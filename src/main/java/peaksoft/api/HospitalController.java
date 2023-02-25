@@ -14,39 +14,43 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HospitalController {
     private final HospitalService hospitalService;
-    
+
     @GetMapping
-    String getAll(Model model){
+    String getAll(Model model) {
         List<Hospital> hospitals = hospitalService.getAll();
-        model.addAttribute("hospitals",hospitals);
+        model.addAttribute("hospitals", hospitals);
         return "hospital/hospitals";
     }
+
     @PostMapping("/new")
-    String create(@ModelAttribute("hospital")Hospital hospital){
+    String create(@ModelAttribute("hospital") Hospital hospital) {
         hospitalService.save(hospital);
         return "redirect:/hospitals";
     }
+
     @GetMapping("/savePage")
-    String save(Model model){
-        model.addAttribute("hospital",new Hospital());
+    String save(Model model) {
+        model.addAttribute("hospital", new Hospital());
         return "hospital/savePage";
     }
-    @DeleteMapping("{id}/delete")
-    String deleteById(@PathVariable("id")Long id){
+
+    @DeleteMapping("/{id}/delete")
+    String deleteById(@PathVariable("id") Long id) {
         hospitalService.deleteById(id);
         return "redirect:/hospitals";
     }
+
     @GetMapping("/{id}/edit")
-      String getUbdate(@PathVariable("id")Long id,Model model){
-        System.out.println("kjlsd;");
-        model.addAttribute("hospital",hospitalService.findById(id));
+    String getUpdate(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("hospital", hospitalService.findById(id));
         System.out.println("Syi");
         return "hospital/ubdateHospital";
     }
+
     @PostMapping("/{id}/up")
-      String ubdateHospital(@PathVariable("id")Long id,@ModelAttribute("hospital")Hospital hospital){
+    String updateHospital(@PathVariable("id") Long id, @ModelAttribute("hospital") Hospital hospital) {
         System.out.println("skcl");
-        hospitalService.ubdateHospital(id,hospital);
+        hospitalService.ubdateHospital(id, hospital);
         return "redirect:/hospitals";
     }
 }

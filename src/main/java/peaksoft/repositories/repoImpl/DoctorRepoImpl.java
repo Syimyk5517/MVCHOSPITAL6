@@ -41,11 +41,12 @@ public class DoctorRepoImpl implements DoctorRepo {
 
     @Override
     public void delete(Long id) {
-        System.out.println("syi");
      Doctor doctor = entityManager.find(Doctor.class,id);
-     doctor.setHospital(null);
-     doctor.setDepartments(null);
-     entityManager.remove(doctor);
+//     doctor.setHospital(null);
+//     doctor.setAppointments(null);
+//     entityManager.remove(doctor);
+        entityManager.remove(entityManager.find(Doctor.class, id));
+
     }
 
 

@@ -3,6 +3,7 @@ package peaksoft.repositories;
 
 
 import peaksoft.models.Department;
+import peaksoft.models.Doctor;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ public interface DepartmentRepo {
     void save(Department department);
     Department finById(Long id);
     void deleteById(Long id);
-    void assignDoctor(Long doctorId,Long departmentId);
+    void assignDoctor(Doctor doctor);
 
 }
