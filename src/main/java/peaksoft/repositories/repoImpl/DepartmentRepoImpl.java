@@ -43,6 +43,13 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     }
 
     @Override
+    public void update( Department department) {
+//        Department oldDepartment = finById(id);
+//        oldDepartment.setName(department.getName());
+        entityManager.merge(department);
+    }
+
+    @Override
     public void assignDoctor(Doctor doctor) {
 //        Doctor doctor = entityManager.find(Doctor.class,doctorId);
 //        Department department = entityManager.find(Department.class,departmentId);

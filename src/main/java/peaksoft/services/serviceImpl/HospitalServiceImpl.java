@@ -51,7 +51,7 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public void ubdateHospital(Long id, Hospital newHospital) {
+    public void updateHospital(Long id, Hospital newHospital) {
         System.out.println("jskfn");
         hospitalRepo.ubdateHospital(id,newHospital);
     }

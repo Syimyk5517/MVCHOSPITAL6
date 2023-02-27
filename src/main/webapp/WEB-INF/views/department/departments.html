@@ -43,6 +43,9 @@
                 <input type="submit" class="btn btn-outline-primary" th:value="  Delete  "></input>
             </form>
             </a>
+            <a th:href="@{/{id}/departments/{departmentId}/edit(id=${hospitalId},departmentId=${deparment.id})}">
+                <input type="submit" class="btn btn-outline-primary"  th:value="  Update  ">
+            </a>
     </tr>
             <a th:href="@{/{id}/departments/saveDepartment (id=${hospitalId})}">
                 <button class="btn btn-primary" type="button">Create</button>

@@ -3,10 +3,13 @@ package peaksoft.services.serviceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import peaksoft.exception.BadRequestExseption;
 import peaksoft.exception.Exception;
+import peaksoft.models.Appointment;
 import peaksoft.models.Department;
 import peaksoft.models.Doctor;
 import peaksoft.models.Hospital;
+import peaksoft.repositories.AppointmentRepo;
 import peaksoft.repositories.DepartmentRepo;
 import peaksoft.repositories.DoctorRepo;
 import peaksoft.repositories.HospitalRepo;
@@ -22,6 +25,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private final DepartmentRepo departmentRepo;
     private final HospitalRepo hospitalRepo;
     private final DoctorRepo doctorRepo;
+    private final AppointmentRepo appointmentRepo ;
 
     @Override
     public List<Department> getAll(Long id) {
@@ -61,13 +65,22 @@ public class DepartmentServiceImpl implements DepartmentService {
 ////            }
 //    }
     @Override
-    public void finById(Long id) {
-        departmentRepo.finById(id);
+    public Department finById(Long id) {
+       return departmentRepo.finById(id);
     }
 
     @Override
     public void deleteById(Long id) {
-        departmentRepo.deleteById(id);
+      Department department = departmentRepo.finById(id);
+      Hospital hospital = department.getHospital();
+
+    }
+
+    @Override
+    public void update(Long departmentId, Department department) {
+        Department oldDepartment = finById(departmentId);;
+        oldDepartment.setName(department.getName());
+          departmentRepo.update(oldDepartment);
     }
 
     @Override
@@ -75,7 +88,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department department = departmentRepo.finById(doctor.getDepartmentId());
         Doctor oldDoctor = doctorRepo.findById(doctorId);
         oldDoctor.addDepartment(department);
-        department.addDoctor(oldDoctor);
+        department.addDoctor(doctor);
         departmentRepo.assignDoctor(oldDoctor);
     }
 }

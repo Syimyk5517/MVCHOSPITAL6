@@ -2,7 +2,7 @@
 <html lang="en"xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
-  <title>Ubdate</title>
+  <title>Update</title>
   <style>
     *,
     body {
@@ -156,8 +156,7 @@
     <div class="form-holder">
       <div class="form-content">
         <div class="form-items">
-          <h3>Register Today</h3>
-          <p>Fill in the data below.</p>
+          <h3>Update Hospital</h3>
           <form class="requires-validation" th:action="@{/hospitals/{id}/up(id=${hospital.id})}" th:object="${hospital}" method="post">
             <input type="hidden" th:field="*{id}">
             <div class="col-md-12">
@@ -167,7 +166,7 @@
               <input class="form-control" type="text" name="name" placeholder="Name" th:field="*{name}" id="input-name">
             </div>
             <div class="col-md-12">
-              <input class="form-control" type="text"  placeholder="adress" th:field="*{address}" id="input-adress">
+              <input class="form-control" type="text"  placeholder="address" th:field="*{address}" id="input-address">
             </div>
             <div class="form-button mt-3">
               <button id="submit" type="submit" class="btn btn-primary">Update</button>

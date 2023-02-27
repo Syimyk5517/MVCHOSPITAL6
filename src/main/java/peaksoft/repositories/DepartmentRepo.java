@@ -14,6 +14,7 @@ public interface DepartmentRepo {
     void save(Department department);
     Department finById(Long id);
     void deleteById(Long id);
+    void update(Department department);
     void assignDoctor(Doctor doctor);
 
 }

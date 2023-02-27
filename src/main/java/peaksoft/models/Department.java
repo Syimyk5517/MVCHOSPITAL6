@@ -27,8 +27,8 @@ public class Department {
     private Long id;
     @Column
     private String name;
-    @ManyToMany(cascade = {REFRESH, DETACH, MERGE}, fetch = EAGER)
-    List<Doctor> doctors = new ArrayList<>();
+    @ManyToMany(cascade = {REFRESH, DETACH, MERGE,PERSIST}, fetch = EAGER)
+    List<Doctor> doctors ;
 
     public void addDoctor(Doctor doctor) {
         if (doctors == null) {
@@ -38,6 +38,6 @@ public class Department {
         }
     }
 
-    @ManyToOne(cascade = {REFRESH, DETACH, MERGE})
+    @ManyToOne(cascade = {REFRESH, DETACH, MERGE,PERSIST})
     private Hospital hospital;
 }

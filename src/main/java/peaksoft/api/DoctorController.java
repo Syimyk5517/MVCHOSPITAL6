@@ -50,8 +50,7 @@ public class DoctorController {
         return "doctor/assignToDepartment";
     }
     @PostMapping("/{doctorId}/saveAssignDepartment")
-    String saveAssignDepartment(@PathVariable("id")Long id,
-                        @PathVariable("doctorId")Long doctorId,
+    String saveAssignDepartment(@PathVariable("doctorId")Long doctorId,
                         @ModelAttribute("doctor") Doctor doctor){
         departmentService.assignDoctor(doctorId, doctor);
         return "redirect:/{id}/doctors";
@@ -59,7 +58,7 @@ public class DoctorController {
     @DeleteMapping("{doctorId}/delete")
     String deleteById(@PathVariable("doctorId") Long doctorId, @PathVariable String id) {
         doctorService.delete(doctorId);
-        return "redirect:/doctors"+doctorId;
+        return "redirect:/{id}/doctors";
 
     }
 

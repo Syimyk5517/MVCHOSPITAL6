@@ -44,7 +44,7 @@ public class Doctor {
         }
     }
 
-    @ManyToOne(cascade = {REFRESH, DETACH, MERGE})
+    @ManyToOne(cascade = {REFRESH, DETACH, MERGE,PERSIST})
     private Hospital hospital;
     @OneToMany(mappedBy = "doctor", fetch = EAGER,cascade = ALL)
     private List<Appointment> appointments = new ArrayList<>();

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.exception.Exception;
 import peaksoft.models.Department;
+import peaksoft.models.Hospital;
 import peaksoft.services.DepartmentService;
 
 
@@ -42,6 +43,17 @@ public class DepartmentController {
     String delete (@PathVariable("departmentId") Long id) {
         departmentService.deleteById(id);
         return "redirect:/{id}/departments";
+    }
+    @GetMapping("/{departmentId}/edit")
+    String getUpdate(@PathVariable("departmentId") Long departmentId, Model model,@PathVariable("id") Long id) {
+        model.addAttribute("department",departmentService.finById(departmentId));
+        model.addAttribute("hospitalId",id);
+        return "department/updateDepartment";
+    }
 
+    @PostMapping("/{departmentId}/up")
+    String updateHospital(@PathVariable("departmentId") Long departmentId, @ModelAttribute("department") Department department) {
+        departmentService.update(departmentId,department);
+        return "redirect:/{id}/departments";
     }
 }

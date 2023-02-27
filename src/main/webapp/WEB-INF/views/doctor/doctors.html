@@ -125,12 +125,9 @@
     </tbody>
 </table>
 <br><br><br><br>
-<div style="text-align: center">
-    <a th:href="@{/instructors/{id}/adddoctor(id=${hospitalId})}">
-        <button style="font-size: 25px; height: 40px;width: 200px; margin-bottom:50px; border-radius: 5px"> Add Doctor
-        </button>
-    </a>
-</div>
+  <a th:href="@{/{id}/doctors/saveDoctor (id=${hospitalId})}">
+    <button class="btn btn-primary" type="button">Add new Doctors</button>
+  </a>
 </body>
 <!--&lt;!&ndash;<body>&ndash;&gt;-->
 
@@ -186,9 +183,7 @@
 <!--        </tbody>-->
 <!--    </table>-->
 <!--<div class="btn-container">-->
-<!--    <a th:href="@{/{id}/doctors/saveDoctor (id=${hospitalId})}">-->
-<!--        <button class="btn btn-primary" type="button">Add new Doctors</button>-->
-<!--    </a>-->
+
 <!--</div>-->
 <!--</body>-->
 </html>

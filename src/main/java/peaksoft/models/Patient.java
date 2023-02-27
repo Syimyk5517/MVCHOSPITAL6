@@ -37,7 +37,7 @@ public class Patient {
     private Gender gender;
     private String email;
 
-    @ManyToOne(cascade = {DETACH,REFRESH, MERGE},
+    @ManyToOne(cascade = {DETACH,REFRESH, MERGE,PERSIST},
             fetch = EAGER)
     private Hospital hospital;
 

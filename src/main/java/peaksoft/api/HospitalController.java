@@ -43,14 +43,12 @@ public class HospitalController {
     @GetMapping("/{id}/edit")
     String getUpdate(@PathVariable("id") Long id, Model model) {
         model.addAttribute("hospital", hospitalService.findById(id));
-        System.out.println("Syi");
-        return "hospital/ubdateHospital";
+        return "hospital/updateHospital";
     }
 
     @PostMapping("/{id}/up")
     String updateHospital(@PathVariable("id") Long id, @ModelAttribute("hospital") Hospital hospital) {
-        System.out.println("skcl");
-        hospitalService.ubdateHospital(id, hospital);
+        hospitalService.updateHospital(id, hospital);
         return "redirect:/hospitals";
     }
 }

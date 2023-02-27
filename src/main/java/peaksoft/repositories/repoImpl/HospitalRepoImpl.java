@@ -41,7 +41,6 @@ public class HospitalRepoImpl implements HospitalRepo {
 
     @Override
     public void ubdateHospital(Long id,Hospital newHospital) {
-        System.out.println("sjdk");
         Hospital hospital = findById(id);
         hospital.setImage(newHospital.getImage());
         hospital.setName(newHospital.getName());
