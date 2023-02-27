@@ -58,12 +58,30 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public void getById(Long id) {
-
+    public Appointment getById(Long id) {
+     return appointmentRepo.getById(id);
     }
 
     @Override
-    public void deleteById(Long id) {
-
+    public void deleteById(Long appointmentId) {
+        Appointment appointment = appointmentRepo.getById(appointmentId);
+        appointment.setPatient(null);
+        appointment.setDepartment(null);
+        appointment.setDoctor(null);
+        appointmentRepo.deleteById(appointmentId);
     }
+
+    @Override
+    public Appointment update(Long hospitalId, Long patientId, Long doctorId, Long departmentId, Appointment appointment,Long appointmentId) {
+        appointment.setPatient(patientRepo.finById(patientId));
+        appointment.setDoctor(doctorRepo.findById(doctorId));
+        appointment.setDepartment(departmentRepo.finById(departmentId));
+        Appointment oldAppointment = getById(appointmentId);
+        oldAppointment.setPatient(appointment.getPatient());
+        oldAppointment.setDoctor(appointment.getDoctor());
+        oldAppointment.setDepartment(appointment.getDepartment());
+        oldAppointment.setDate(appointment.getDate());
+        return appointmentRepo.update(oldAppointment);
+        }
 }
+

@@ -39,7 +39,7 @@ public class DoctorController {
                        @PathVariable("doctorId")Long doctorId,
                        Model model){
         model.addAttribute("doctor", doctorService.findById(doctorId));
-        model.addAttribute("departments", departmentService.getAll(id));
+        model.addAttribute("departments", doctorService.getAllDepartmentDoctorById(doctorId));
         model.addAttribute("doctors",doctorService.getAll(id));
         return "doctor/departments";
     }

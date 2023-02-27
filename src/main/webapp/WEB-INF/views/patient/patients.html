@@ -47,6 +47,18 @@
       <td th:text="${patient.gender}"></td>
       <td th:text="${patient.email}"></td>
       <td th:text="${patient.hospital.name}"></td>
+      <td>
+        <a th:href="@{/{id}/patients/{patientId}/edit(id=${hospitalId},patientId=${patient.id})}">
+          <input type="submit" class="btn btn-outline-primary"  th:value="  Update  ">
+          <form th:method="DELETE"
+                th:action="@{/{id}/patients/{patientId}/delete(id=${hospitalId}, patientId=${patient.id})}">
+            <input type="submit" class="btn btn-outline-primary" th:value="  Delete  "></input>
+          </form>
+        </a>
+      </td>
+
+
+
     </tr>
     </tbody>
   </table>

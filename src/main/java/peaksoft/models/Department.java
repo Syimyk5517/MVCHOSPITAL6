@@ -27,7 +27,7 @@ public class Department {
     private Long id;
     @Column
     private String name;
-    @ManyToMany(cascade = {REFRESH, DETACH, MERGE,PERSIST}, fetch = EAGER)
+    @ManyToMany(mappedBy = "departments",cascade = {REFRESH, DETACH, MERGE,PERSIST}, fetch = EAGER)
     List<Doctor> doctors ;
 
     public void addDoctor(Doctor doctor) {

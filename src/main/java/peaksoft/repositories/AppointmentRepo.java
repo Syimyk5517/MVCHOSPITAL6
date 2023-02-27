@@ -11,8 +11,9 @@ import java.util.List;
 public interface AppointmentRepo {
     List<Appointment> findAll(Long id);
     void save(Appointment appointment);
-    void getById(Long id);
+    Appointment getById(Long id);
     void deleteById(Long id);
+    Appointment update(Appointment appointment);
 
 
 

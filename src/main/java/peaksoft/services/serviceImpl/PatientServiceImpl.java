@@ -3,12 +3,15 @@ package peaksoft.services.serviceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import peaksoft.models.Appointment;
 import peaksoft.models.Hospital;
 import peaksoft.models.Patient;
+import peaksoft.repositories.AppointmentRepo;
 import peaksoft.repositories.HospitalRepo;
 import peaksoft.repositories.PatientRepo;
 import peaksoft.services.PatientService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,6 +21,7 @@ import java.util.List;
 public class PatientServiceImpl implements PatientService {
     private final PatientRepo patientRepo;
     private final HospitalRepo hospitalRepo;
+    private final AppointmentRepo appointmentRepo;
 
     @Override
     public List<Patient> getAllPatient(Long id) {
@@ -35,17 +39,32 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void finById(Long id) {
-    patientRepo.finById(id);
+    public Patient finById(Long id) {
+     return patientRepo.finById(id);
     }
 
     @Override
     public void delete(Long id) {
-
+        Patient patient = finById(id);
+        Hospital hospital = patient.getHospital();
+        List<Appointment> appointments = patient.getAppointments();
+        appointments.forEach(appointment -> appointment.getPatient().setAppointments(null));
+        appointments.forEach(appointment -> appointment.getDoctor().setAppointments(null));
+        hospital.getAppointments().removeAll(appointments);
+        for (int i = 0; i < appointments.size(); i++) {
+            appointmentRepo.deleteById(appointments.get(i).getId());
+        }
+         patientRepo.delete(id);
     }
 
     @Override
-    public Patient updatePatient(Patient patient) {
-        return null;
+    public Patient updatePatient(Long id,Patient patient) {
+        Patient oldPatient = patientRepo.finById(id);
+        oldPatient.setFirstName(patient.getFirstName());
+        oldPatient.setLastName(patient.getLastName());
+        oldPatient.setGender(patient.getGender());
+        oldPatient.setEmail(patient.getEmail());
+        oldPatient.setPhoneNumber(patient.getPhoneNumber());
+        return patientRepo.updatePatient(oldPatient);
     }
 }

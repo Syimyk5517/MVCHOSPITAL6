@@ -29,15 +29,19 @@ public class AppointmentRepoImpl implements AppointmentRepo {
     }
 
     @Override
-    public void getById(Long id) {
-      entityManager.find(Appointment.class, id);
+    public Appointment getById(Long id) {
+      return entityManager.find(Appointment.class, id);
 
     }
 
     @Override
     public void deleteById(Long id) {
-        Appointment appointment = entityManager.find(Appointment.class, id);
-        entityManager.remove(appointment);
+        entityManager.remove(entityManager.find(Appointment.class,id));
 
+    }
+
+    @Override
+    public Appointment update(Appointment appointment) {
+        return entityManager.merge(appointment);
     }
 }

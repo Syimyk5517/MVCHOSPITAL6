@@ -45,5 +45,10 @@ public class DoctorRepoImpl implements DoctorRepo {
 
     }
 
+    @Override
+    public List<Department> getAllDepartmentDoctorById(Long doctorId) {
+        return entityManager.createQuery("select d from Department d join d.doctors doctor where doctor.id=:id", Department.class).setParameter("id",doctorId).getResultList();
+    }
+
 
 }

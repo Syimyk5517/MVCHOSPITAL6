@@ -29,8 +29,7 @@ public class PatientRepoImpl implements PatientRepo {
 
     @Override
     public Patient finById(Long id) {
-        Patient patient = entityManager.find(Patient.class, id);
-        return patient;
+        return entityManager.find(Patient.class, id);
     }
 
     @Override
@@ -41,6 +40,6 @@ public class PatientRepoImpl implements PatientRepo {
 
     @Override
     public Patient updatePatient(Patient patient) {
-        return null;
+        return entityManager.merge(patient);
     }
 }

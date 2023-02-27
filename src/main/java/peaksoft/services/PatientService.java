@@ -10,7 +10,7 @@ import java.util.List;
 public interface PatientService {
     List<Patient> getAllPatient(Long id);
     void savePatient(Long hospitalId,Patient patient);
-    void finById(Long id);
+    Patient finById(Long id);
     void delete(Long id);
-    Patient updatePatient(Patient patient);
+    Patient updatePatient(Long id,Patient patient);
 }
