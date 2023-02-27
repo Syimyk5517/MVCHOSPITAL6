@@ -15,6 +15,7 @@ import peaksoft.repositories.DoctorRepo;
 import peaksoft.repositories.HospitalRepo;
 import peaksoft.services.DepartmentService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -73,7 +74,20 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void deleteById(Long id) {
       Department department = departmentRepo.finById(id);
       Hospital hospital = department.getHospital();
-
+      List<Appointment> appointments = appointmentRepo.findAll(hospital.getId());
+      List<Appointment> appointmentList = new ArrayList<>();
+      for (Appointment appointment : appointments){
+          if (appointment.getDepartment().getId().equals(id)){
+              appointmentList.add(appointment);
+          }
+      }
+      appointmentList.forEach(appointment -> appointment.getDoctor().setAppointments(null));
+      appointmentList.forEach(appointment -> appointment.getPatient().setAppointments(null));
+      hospital.getAppointments().removeAll(appointmentList);
+        for (int i = 0; i < appointmentList.size(); i++) {
+            appointmentRepo.deleteById(appointmentList.get(i).getId());
+        }
+        departmentRepo.deleteById(id);
     }
 
     @Override

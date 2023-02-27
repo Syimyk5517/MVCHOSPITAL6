@@ -37,15 +37,11 @@ public class DepartmentRepoImpl implements DepartmentRepo {
     @Override
     public void deleteById(Long id) {
         Department department = entityManager.find(Department.class, id);
-        department.setHospital(null);
-        department.setDoctors(null);
         entityManager.remove(department);
     }
 
     @Override
     public void update( Department department) {
-//        Department oldDepartment = finById(id);
-//        oldDepartment.setName(department.getName());
         entityManager.merge(department);
     }
 

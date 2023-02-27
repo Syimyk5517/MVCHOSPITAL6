@@ -13,7 +13,7 @@ public interface DoctorService {
     void save(Long hospitalId,Doctor doctor);
 
     Doctor findById(Long id);
-    Doctor update(Doctor doctor);
+    Doctor update(Long doctorId,Doctor doctor);
     void delete(Long id);
 
 }

@@ -112,9 +112,10 @@
                 <input type="submit" class="btn btn-outline-primary" th:value="  Departments  ">
             </a>
         </a></td>
-        <td><a th:href="@{/update/{id}(id=${doctor.id})}">
-            <button>Update</button>
-        </a>
+        <td>
+            <a th:href="@{/{id}/doctors/{doctorId}/edit(id=${hospitalId},doctorId=${doctor.id})}">
+                <input type="submit" class="btn btn-outline-primary"  th:value="  Update  ">
+            </a>
         </td>
         <td><a th:method="GET"
                th:href="@{/{id}/doctors{doctorId}/delete(id=${hospitalId},doctorId=${doctor.id})}">

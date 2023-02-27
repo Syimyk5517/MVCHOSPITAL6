@@ -36,15 +36,11 @@ public class DoctorRepoImpl implements DoctorRepo {
 
     @Override
     public Doctor update(Doctor doctor) {
-        return null;
+        return entityManager.merge(doctor);
     }
 
     @Override
     public void delete(Long id) {
-     Doctor doctor = entityManager.find(Doctor.class,id);
-//     doctor.setHospital(null);
-//     doctor.setAppointments(null);
-//     entityManager.remove(doctor);
         entityManager.remove(entityManager.find(Doctor.class, id));
 
     }

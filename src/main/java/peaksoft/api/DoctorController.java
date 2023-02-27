@@ -61,5 +61,17 @@ public class DoctorController {
         return "redirect:/{id}/doctors";
 
     }
+    @GetMapping("/{doctorId}/edit")
+    String getUpdate(@PathVariable("doctorId") Long doctorId, Model model,@PathVariable("id") Long id) {
+        model.addAttribute("doctor",doctorService.findById(doctorId));
+        model.addAttribute("hospitalId",id);
+        return "doctor/updateDoctor";
+    }
+
+    @PostMapping("/{doctorId}/up")
+    String updateDoctor(@PathVariable("doctorId") Long doctorId, @ModelAttribute("doctor") Doctor doctor) {
+        doctorService.update(doctorId,doctor);
+        return "redirect:/{id}/doctors";
+    }
 
 }

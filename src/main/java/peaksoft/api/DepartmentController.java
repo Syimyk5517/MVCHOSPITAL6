@@ -40,8 +40,8 @@ public class DepartmentController {
     }
 
     @DeleteMapping("{departmentId}/delete")
-    String delete (@PathVariable("departmentId") Long id) {
-        departmentService.deleteById(id);
+    String delete (@PathVariable("departmentId") Long departmentId) {
+        departmentService.deleteById(departmentId);
         return "redirect:/{id}/departments";
     }
     @GetMapping("/{departmentId}/edit")
@@ -52,7 +52,7 @@ public class DepartmentController {
     }
 
     @PostMapping("/{departmentId}/up")
-    String updateHospital(@PathVariable("departmentId") Long departmentId, @ModelAttribute("department") Department department) {
+    String updateDepartment(@PathVariable("departmentId") Long departmentId, @ModelAttribute("department") Department department) {
         departmentService.update(departmentId,department);
         return "redirect:/{id}/departments";
     }
